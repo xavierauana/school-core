@@ -15,12 +15,10 @@ interface HasContentInterface
 {
     public function hasContent(): Relation;
 
-    public function getTextContent(string $identifier, string $languageCode
-    ): ?string;
-
-    public function createIntegerContent(
-        string $identifier, Language $language, int $content
-    ): IsContentInterface;
+    public function getContent(
+        string $identifier,
+        string $languageCode
+    );
 
     public function createContent(
         string $identifier, string $contentType, Language $language, $content

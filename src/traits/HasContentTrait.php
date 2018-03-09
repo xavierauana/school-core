@@ -26,6 +26,25 @@ trait HasContentTrait
                                          $content);
     }
 
+    public function getContent(
+        string $identifier,
+        string $languageCode
+    ) {
+        $language = Language::whereIsActive(true)->whereCode($languageCode)
+                            ->first();
+
+        if (!$language) {
+            return null;
+        }
+
+        $contentContainer = $this->hasContent()->where([
+            ["identifier", "=", $identifier],
+            ["language_id", "=", $language->id],
+        ])->first();
+
+        return $contentContainer ? $contentContainer->content->showContent() : null;
+    }
+
     public function createTextContent(
         string $identifier, Language $language, string $content
     ): IsContentInterface {

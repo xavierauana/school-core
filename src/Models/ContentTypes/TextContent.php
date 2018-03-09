@@ -17,7 +17,6 @@ class TextContent extends Model implements IsContentInterface
         return $this;
     }
 
-
     public function showContent() {
         return $this->content;
     }

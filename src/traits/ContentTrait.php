@@ -35,16 +35,4 @@ trait ContentTrait
         return $contentObject;
     }
 
-    public function getContent(
-        HasContentInterface $contentOwner, string $identifier,
-        Language $language
-    ) {
-        $contentContainer = Content::whereObjectType(get_class($contentOwner))
-                                   ->whereObjectId($contentOwner->id)
-                                   ->whereContentType(get_class($this))
-                                   ->whereIdentifier($identifier)
-                                   ->whereLanguageId($language->id)->first();
-
-        return $contentContainer ? $contentContainer->content->showContent() : null;
-    }
 }

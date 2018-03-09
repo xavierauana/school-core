@@ -35,10 +35,5 @@ interface IsContentInterface
      */
     public function saveContent($content): IsContentInterface;
 
-    public function getContent(
-        HasContentInterface $contentOwner, string $identifier,
-        Language $language
-    );
-
     public function showContent();
 }
