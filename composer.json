@@ -16,5 +16,12 @@
 	"psr-4": {
 	  "Anacreation\\School\\": "src/"
 	}
+  },
+  "extra": {
+	"laravel": {
+	  "providers": [
+		"Anacreation\\School\\SchoolServiceProvider"
+	  ]
+	}
   }
 }
