@@ -1,0 +1,20 @@
+{
+  "name": "anacreation/school-core",
+  "type": "lib",
+  "description": "This only contains Language and Content",
+  "authors": [
+	{
+	  "name": "Xavier Au",
+	  "email": "xavier.au@anacreation.com"
+	}
+  ],
+  "require": {
+	"php": ">=7.1.0",
+	"laravel/framework": "5.5.*"
+  },
+  "autoload": {
+	"psr-4": {
+	  "Anacreation\\School\\": "core/src"
+	}
+  }
+}

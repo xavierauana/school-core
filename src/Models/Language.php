@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace Anacreation\School\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

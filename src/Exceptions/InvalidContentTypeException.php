@@ -8,7 +8,7 @@
 namespace Anacreation\School\Exceptions;
 
 
-class InvalidContentTypeException
+class InvalidContentTypeException extends \Exception
 {
 
 }

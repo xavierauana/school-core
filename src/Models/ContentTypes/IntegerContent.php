@@ -6,7 +6,7 @@ use Anacreation\School\Contracts\IsContentInterface;
 use Anacreation\School\traits\ContentTrait;
 use Illuminate\Database\Eloquent\Model;
 
-class NumberContent extends Model implements IsContentInterface
+class IntegerContent extends Model implements IsContentInterface
 {
     use ContentTrait;
 
@@ -22,5 +22,9 @@ class NumberContent extends Model implements IsContentInterface
             return $this;
         }
         throw new \InvalidArgumentException('Content should be integer!');
+    }
+
+    public function showContent() {
+        return $this->content;
     }
 }

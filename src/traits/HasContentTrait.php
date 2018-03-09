@@ -14,31 +14,48 @@ use Anacreation\School\Models\Content;
 use Anacreation\School\Models\Language;
 use Illuminate\Database\Eloquent\Relations\Relation;
 
-trait HsContentTrait
+trait HasContentTrait
 {
     public function createContent(
-        string $contentType, Language $language, $content
+        string $identifier, string $contentType, Language $language, $content
     ): IsContentInterface {
-        $contentOperator = ContentOperatorFactory::make($contentType);
 
-        return $contentOperator->createContent($this, $language, $content);
+        return ContentOperatorFactory::make($contentType)
+                                     ->createContent($this, $identifier,
+                                         $language,
+                                         $content);
     }
 
-    public function createTextContent(Language $language, string $content
+    public function createTextContent(
+        string $identifier, Language $language, string $content
     ): IsContentInterface {
-        $contentOperator = ContentOperatorFactory::make("text");
-
-        return $contentOperator->createContent($this, $language, $content);
+        return $this->createContent($identifier, "text", $language,
+            $content);
     }
 
-    public function createIntegerContent(Language $language, int $content
+    public function createIntegerContent(
+        string $identifier, Language $language, int $content
     ): IsContentInterface {
-        $contentOperator = ContentOperatorFactory::make("integer");
 
-        return $contentOperator->createContent($this, $language, $content);
+        return $this->createContent($identifier, "integer", $language,
+            $content);
     }
 
     public function hasContent(): Relation {
         return $this->morphMany(Content::class, 'object');
+    }
+
+    public function getTextContent(string $identifier, string $languageCode
+    ): ?string {
+        $language = Language::whereCode($languageCode)->whereIsActive(1)
+                            ->first();
+        if ($language) {
+            return ContentOperatorFactory::make("text")
+                                         ->getContent($this, $identifier,
+                                             $language);
+        }
+
+        return null;
+
     }
 }

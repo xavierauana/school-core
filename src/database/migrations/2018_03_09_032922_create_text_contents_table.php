@@ -15,7 +15,6 @@ class CreateTextContentsTable extends Migration
         Schema::create('text_contents', function (Blueprint $table) {
             $table->increments('id');
             $table->text('content')->nullable();
-            $table->unsignedInteger('content_id');
             $table->timestamps();
         });
     }
